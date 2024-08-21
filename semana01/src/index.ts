@@ -1,11 +1,30 @@
-//var nome :string = "Fellipe";
+import leia from "readline-sync"
 
-//console.log(nome)
+type categoria = {
+    roupas: string,
+    camas: string,
+    mesas: string,
+    banhos: string
+}
 
-//string = frase e palavras
-//boolean = verdadeiro ou falso
-//number = numeros inteirou ou quebrados 
+type Produto = {
+    pdRoupas: string,
+    pdCama: string,
+    pdMesa: string,
+    pdBanho: string
+}
 
+var pdRoupas = leia.question("PRODUTO DE ROUPA: ")
+var pdCama = leia.question("PRODUTO DE CAMA: ")
+var pdMesa = leia.question(" PRODUTO DE MESA: ")
+var pdBanho = leia.question("PRODUTO DE BANHO: ")
 
+const loja = {
+    roupas:pdRoupas,
+    camas: pdCama,
+    mesas: pdMesa,
+    banhos: pdBanho
 
+}
 
+console.table()
