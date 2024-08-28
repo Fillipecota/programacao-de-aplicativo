@@ -1,32 +1,16 @@
-import Cachorro from "./Cachorro";
-import Dono from "./Dono";
+import ContaBancaria from "./ContaBancaria";
+import Titular from "./Titular";
+import leia from "readline-sync"
 
-var d1 = new Dono("Fillipe", "(00) 0000-0000");
-var c1 = new Cachorro("whiskylate", "alcool", "branquinha-amarelado", "meio copo", d1);
+var nome = leia.question("Digite nome do usuario: ")
+var cpf = leia.question("Digite o cpf: ")
+var pix = leia.question("Digite  o numero pix: ")
+var sacar = leia.questionFloat("Digite o valor para sacar: ")
+var depositar = leia.questionFloat("Digite o valor para depositar: ")
+var d1 = new Titular(nome, cpf)
+var c1 = new ContaBancaria(d1, pix);
 
-
-//Modo de fazer sem o contrutor//
-//var c1 = new Cachorro();
-//c1.nome = "whiskylate"
-//c1.raca = "alcool"
-//c1.cor = "branquinha-amarelado"
-//c1.tamanho = "meio copo"
-//var d1 = new Dono();
-//d1.nome = "Fillipe"
-//d1.telefone = "(00) 0000-0000"
-//c1.dono = d1
-//c1.exibirCachorro();
-//c1.exibirDono();
-
-//var c2 = new Cachorro();
-//c2.nome = "ScoobyDoo";
-//c2.raca = "Pastor Alemão";
-//c2.cor = "Marron";
-//c2.tamanho = " grande";
-//var d2 = new Dono();
-//d2.nome = "Salsicha";
-//d2.telefone = "(11) 0000-0000";
-//c2.dono = d2
-//c2.exibirCachorro();
-//c2.exibirDono();
-
+c1.consultaSaldo();
+c1.depositar(depositar);
+c1.sacar(sacar);
+c1.MostraDadoCota();
