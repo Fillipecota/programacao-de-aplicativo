@@ -30,6 +30,7 @@ export default class Banco {
 
         this.contas[indexOrigem].sacar(valorTransferido)
         this.contas[indexDesino].depositar(valorTransferido)
+        console.log("TRANSFERENCIA FEITA COM SUCESSO!!!!")
 
 
         //for (var i = 0; i < this.contas.length; i++) {
@@ -102,7 +103,6 @@ export default class Banco {
         console.log(`NAO FOI ENCONTRADO NENHUMA CONTA COM O NUMERO ${numeroConta}`)
     }
 }
-
 
 
 
