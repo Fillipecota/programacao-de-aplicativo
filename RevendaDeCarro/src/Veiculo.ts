@@ -1,12 +1,13 @@
 
 export default class Veiculo{
-    constructor (marca:string, modelo: string, ano: number, valor: number, disponivel: boolean ){
+    constructor (marca:string, modelo: string, ano: number, valor: number, placa: string ){
 
         this.marca = marca;
         this.modelo = modelo;
         this.ano = ano;
         this.valor = valor
-        this.disponivel = disponivel
+        this.disponivel = false
+        this.placa = placa
         
     }
 
@@ -15,7 +16,7 @@ export default class Veiculo{
     private ano: number;
     private valor: number;
     private disponivel: boolean;
-    
+    private placa: string
 
     public setMarca(marca:string): void{
         this.marca = marca;
@@ -32,10 +33,27 @@ export default class Veiculo{
         this.valor = valor;
     }
     public setDisponivel(disponivel:boolean): void{
-        this.disponivel = disponivel;
+        this.disponivel;
+    }
+
+    public setPlaca(placa:string):void{
+        this.placa = placa
+    }
+
+    public getPlaca():string {
+      return this.placa
     }
     
+    mostrarVeiculo(){
+        console.log("------------Dados do veiculo----------")
+        console.log(`Marca: ${this.marca}`)
+        console.log(`modelo: ${this.modelo}`)
+        console.log(`ano: ${this.ano}`)
+        console.log(`valor ${this.valor}`)
+        console.log(`placa: ${this.placa}`)
+    
 
+    }
 
     }
 

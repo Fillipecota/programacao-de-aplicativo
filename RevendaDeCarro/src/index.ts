@@ -1,26 +1,24 @@
-import Banco from "./Banco";
+import Fecar from "./Fecar";
+import Veiculo from "./Veiculo";
 import leia from "readline-sync"
 
-var nubank = new Banco();
+var Fehcar = new Fecar();
 
 var opcao = 0;
 do {
-    opcao = leia.keyInSelect(["CRIAR CONTA", "TRANSFERENCIA", "REMOVER CONTA", "MOSTRAR CONTA"]) + 1;
+    opcao = leia.keyInSelect(["ADC VEICULO", "REMOVER VEICULO", "MOSTRAR VEICULO"]) + 1;
 
     console.log("------------ MENU--------------")
 
     switch (opcao) {
         case 1:
-            nubank.addAccount();
+            Fehcar.adicionarNovoVeiculo();
             break
         case 2:
-            nubank.trasferir();
-            break;
-        case 3:
-            nubank.removerConta();
+            Fehcar.removerVeiculos();
             break;
         case 4:
-            nubank.mostraContas();
+            Fehcar.mostrarVeiculos();
             break;
     }
 } while (opcao !== 0);
