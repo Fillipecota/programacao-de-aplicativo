@@ -48,3 +48,45 @@ body {
     border-radius: 10px;
     cursor: pointer;
 }
+#add-tarefa:hover {
+    background-color: #218838;
+}
+
+#lista-tarefa {
+    list-style-type: none;
+    margin-top: 20px
+}
+
+#lista-tarefa li {
+    background-color: #f9f9f9;
+    border: 1px solid #dddddd;
+    display: flex;
+    justify-content: space-between;
+    padding: 10px;
+    align-items: center;
+    border-radius: 8px;
+    margin-bottom: 10px;
+}
+
+.check, .delete, .edit {
+    border: none;
+    background: none;
+    cursor: pointer;
+    margin-left: 10px;
+}
+
+.check {
+    color: #00ff00;
+}
+
+.edit {
+    color: #007bff;
+}
+
+.delete {
+    color: #dc3545;
+}
+
+.completed {
+    background-color: #dcedc8 !important;
+}
