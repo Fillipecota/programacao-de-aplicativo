@@ -16,6 +16,7 @@ function adicionarTarefa(){
     }
 
     tarefas.push(novaTarefa);
+    localStorage.setItem("tarefas", JSON.stringify(tarefas))
     render()
     input.value = "";
     input.focus();
@@ -37,14 +38,17 @@ function render() {
         const concluir = document.createElement("button");
         concluir.textContent = tarefas[i].completed ? "Desmarcar" : "Concluir";
         concluir.classList.add("check");
+        concluir.setAttribute("onclick", `trocaConcluir(${tarefas[i].id})`)
 
         const edit = document.createElement("button");
         edit.textContent = "Editar";
         edit.classList.add("edit");
+        edit.setAttribute("onclick",`editarTarefa(${tarefas[i].id})`)
 
         const deletar = document.createElement("button");
         deletar.textContent = "Deletar";
-        concluir.classList.add("delete");
+        deletar.classList.add("delete");
+        deletar.setAttribute("onclick", `deletarTarefa(${tarefas[i].id})`)
 
         const div = document.createElement("div");
 
@@ -56,5 +60,45 @@ function render() {
         li.appendChild(div);
 
         listaTarefas.appendChild(li);
+    }
+}
+function trocaConcluir(id){
+    const index = tarefas.findIndex(tarefa => tarefa.id === id);
+    const valorAtual = tarefas[index].completed;
+    tarefas[index].completed = !valorAtual;
+    localStorage.setItem("tarefas", JSON.stringify(tarefas))
+    render();
+}
+function editarTarefa(id){
+    const index = tarefas.findIndex(tarefa => tarefa.id === id); 
+    const novaTextoTarefa = prompt(`editar a tarefa`,tarefas[index].text);
+
+    if(novaTextoTarefa !== null && novaTextoTarefa.trim() !== ""){
+        tarefas[index].text = novaTextoTarefa;
+        localStorage.setItem("tarefas", JSON.stringify(tarefas))
+        render();
+    }
+}
+function deletarTarefa(id){
+    const index = tarefas.findIndex(tarefa => tarefa.id === id);
+    tarefas.splice(index,1);
+    localStorage.setItem("tarefas", JSON.stringify(tarefas))
+    render(); 
+}
+// function deletarTarefa(id){
+//     tarefas = tarefas.filter(tarefas => tarefas.id !== id);
+//     render();
+// }
+
+function addPeloEnter(evento){
+ if (evento.key === `Enter`){
+    adicionarTarefa();
+ }
+}
+function carregarTarefas(){
+    const tarefaLocalStore = localStorage.getItem("tarefas")
+    if(tarefaLocalStore){
+        tarefas = JSON.parse(tarefaLocalStore);
+        render();
     }
 }
