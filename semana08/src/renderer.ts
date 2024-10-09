@@ -30,33 +30,34 @@
 
 import './reset.css';
 import './index.css';
+import Swal from 'sweetalert2'
 import Tarefa from './Tarefa';
 
 
 
-var tarefas:Tarefa[] = [];
+var tarefas: Tarefa[] = [];
 
-export function addPeloEnter(evento: KeyboardEvent){
-    if(evento.key === 'Enter'){
-       adicionarTarefa();
+export function addPeloEnter(evento: KeyboardEvent) {
+    if (evento.key === 'Enter') {
+        adicionarTarefa();
     }
 }
 
 
 
-function adicionarTarefa(){
+function adicionarTarefa() {
     const input = document.getElementById("tarefa-text") as HTMLInputElement;
     const tarefaTexto = input.value.trim();
 
-    if(tarefaTexto === ''){
-        alert("VOCÊ TENTOU ADICIONAR UMA TAREFA SEM TEXTO");
+    if (tarefaTexto === '') {
+        Swal.fire("VOCÊ TENTOU ADICIONAR UMA TAREFA SEM TEXTO");
         return;
     }
 
     const novaTarefa = new Tarefa(tarefaTexto);
     tarefas.push(novaTarefa);
     console.log(tarefas)
-    
+
     localStorage.setItem("tarefas", JSON.stringify(tarefas))
     render()
     input.value = "";
@@ -67,9 +68,9 @@ function render() {
     const listaTarefas = document.getElementById("lista-tarefa") as HTMLUListElement;
     listaTarefas.innerHTML = "";
 
-    for(var i = 0; i < tarefas.length; i++){
+    for (var i = 0; i < tarefas.length; i++) {
         const li = document.createElement("li");
-        if(tarefas[i].getCompleted() === true){
+        if (tarefas[i].getCompleted() === true) {
             li.classList.add("completed");
         }
 
@@ -84,7 +85,7 @@ function render() {
         const edit = document.createElement("button");
         edit.textContent = "Editar";
         edit.classList.add("edit");
-        edit.setAttribute("onclick",`editarTarefa(${tarefas[i].getId()})`)
+        edit.setAttribute("onclick", `editarTarefa(${tarefas[i].getId()})`)
 
         const deletar = document.createElement("button");
         deletar.textContent = "Deletar";
@@ -102,37 +103,55 @@ function render() {
 
         listaTarefas.appendChild(li);
     }
-// }
-// function trocaConcluir(){
-//     const index = tarefas.findIndex(tarefa => tarefa.getId() === id);
-//     const valorAtual = tarefas[index].getCompleted();
-//     tarefas[index].completed = !valorAtual;
+}
+function trocaConcluir(id: number) {
+    const index = tarefas.findIndex(tarefa => tarefa.getId() === id);
+    const valorAtual = tarefas[index].getCompleted();
+    tarefas[index].setCompleted(!valorAtual);
+    localStorage.setItem("tarefas", JSON.stringify(tarefas))
+    render();
+}
+async function editarTarefa(id: number) {
+    const index = tarefas.findIndex(tarefa => tarefa.getId() === id);
+
+    const { value } = await Swal.fire({
+        title: "Editar tarefa!",
+        input: "text",
+        inputLabel: "Edite o texto da tarefa",
+        inputValue: tarefas[index].getText(),
+        showCancelButton: false,
+        confirmButtonText: 'salvar',
+        icon: 'success'
+    });
+
+    if (value !== null && value.trim() !== "") {
+        tarefas[index].setText(value);
+        localStorage.setItem("tarefas", JSON.stringify(tarefas))
+        render();
+    }
+}
+
+function deletarTarefa(id: number) {
+    const index = tarefas.findIndex(tarefa => tarefa.getId() === id);
+    tarefas.splice(index, 1);
+    localStorage.setItem("tarefas", JSON.stringify(tarefas))
+    render();
+}
+//     const tarefaFiltradas = tarefas.filter(tarefa => tarefa.getId() !== id);
+//     tarefas = tarefaFiltradas;
 //     localStorage.setItem("tarefas", JSON.stringify(tarefas))
 //     render();
-// }
-// function editarTarefa(){
-//     const index = tarefas.findIndex(tarefa => tarefa.id === id); 
-//     const novaTextoTarefa = prompt(`editar a tarefa`,tarefas[index].text);
+// 
 
-//     if(novaTextoTarefa !== null && novaTextoTarefa.trim() !== ""){
-//         tarefas[index].text = novaTextoTarefa;
-//         localStorage.setItem("tarefas", JSON.stringify(tarefas))
-//         render();
-//     }
-// }
-// function deletarTarefa(){
-//     const index = tarefas.findIndex(tarefa => tarefa.id === id);
-//     tarefas.splice(index,1);
-//     localStorage.setItem("tarefas", JSON.stringify(tarefas))
-//     render(); 
-
-}
-// (window as any).addPeloEnter = addPeloEnter;
 
 
 
 
 window.addPeloEnter = addPeloEnter;
 window.adicionarTarefa = adicionarTarefa;
-// window.trocaConcluir = trocaConcluir;
-// window.deletarTarefa = deletarTarefa;
+window.trocaConcluir = trocaConcluir;
+window.deletarTarefa = deletarTarefa;
+window.editarTarefa = editarTarefa;
+
+// (window as any).addPeloEnter = addPeloEnter; const novaTextoTarefa = prompt(`editar a tarefa`,tarefas[index].getText());
+
