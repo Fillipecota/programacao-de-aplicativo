@@ -76,7 +76,7 @@ function render() {
 
         const span = document.createElement("span");
         span.textContent = tarefas[i].getText();
-
+        
         const concluir = document.createElement("button");
         concluir.textContent = tarefas[i].getCompleted() ? "Desmarcar" : "Concluir";
         concluir.classList.add("check");
