@@ -1,0 +1,81 @@
+body {
+  background-color: cornflowerblue;
+}
+
+header {
+  background-color: aqua;
+  margin: 25px auto 10px;
+  border-radius: 10px;
+  width: 80vw;
+  padding: 20px;
+}
+
+header h2 {
+  font-size: 20px;
+  font-weight: 600;
+  font-family: Arial, Helvetica, sans-serif;
+  text-align: center;
+  color: darkslategrey;
+}
+
+main {
+  /* background-color: antiquewhite; */
+  width: 80vw;
+  height: 500px;
+  margin: 20px auto 0;
+  display: flex;
+  flex-direction: row;
+  column-gap: 20px;
+}
+
+form {
+  background-color: azure;
+  /* height: 400px; */
+  width: 30%;
+  height: fit-content;
+  padding: 15px;
+  border-radius: 15px;
+  box-shadow: 18px 18px 5px -3px rgba(26, 32, 26, 0.58)
+}
+
+aside {
+  /* background-color: blueviolet; */
+  height: 400px;
+  width: 100%;
+}
+
+form h2 {
+  font-size: 20px;
+  font-size: bold;
+  font-family: cursive;
+  text-align: center;
+  margin-bottom: 30px;
+}
+
+form .input-data {
+  display: flex;
+  flex-direction: column;
+  row-gap: 5px;
+}
+
+form .input-data:not(:last-of-type) {
+  margin-bottom: 20px;
+}
+
+form .input-data label {
+  color: blue;
+  font-size: 14px;
+  font-weight: bold;
+  font-family: Arial, Helvetica, sans-serif;
+}
+
+form .input-data input {
+  height: 48px;
+  font-size: 14px;
+  color: black;
+ border-radius: 10px;
+ outline: none;
+ /* border: 4px; */
+ border-color: aquamarine;
+ padding: 0 10px;
+}
