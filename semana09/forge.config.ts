@@ -21,6 +21,7 @@ const config: ForgeConfig = {
     new AutoUnpackNativesPlugin({}),
     new WebpackPlugin({
       mainConfig,
+      devContentSecurityPolicy:`img-scr * self 'unsafe-inline' blod: data: gap:;`,
       renderer: {
         config: rendererConfig,
         entryPoints: [
