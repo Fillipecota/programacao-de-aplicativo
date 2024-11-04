@@ -1,0 +1,57 @@
+body{
+    font-family: Arial, Helvetica, sans-serif;
+    background-color: turquoise;
+}
+
+header{
+    background-color: chartreuse;
+    margin: 25px auto 15px;
+    border-radius: 10px;
+    width: 80vw;
+    padding: 20px;
+    text-align: center;
+}
+
+main{
+    width: 80vw;
+    height: 500px;
+    margin: 20px auto ;
+    display: flex;
+    flex-direction: row;
+    column-gap: 20px;
+}
+
+form {
+    background-color: darkolivegreen;
+    width: 25%;
+    height: fit-content;
+    padding: 20px;
+    border-radius: 20px;
+    box-shadow: 18px 18px 5px -3px rgba(26, 32, 26, 0.58)
+  }
+
+form .input-infor label { 
+    padding: 5px;
+    display: flex;
+    text-align: center;
+    
+} 
+
+form .input-infor input {
+    padding: 5px;
+    border-radius: 10px;
+    width: 100%;
+}
+
+form button {
+    padding: 5px;
+    border-radius: 10px;
+    width: 100%;
+    cursor: pointer;
+    margin-top: 10px;
+}
+
+/* #reservas{
+    background-color: aquamarine
+    ;
+} */
