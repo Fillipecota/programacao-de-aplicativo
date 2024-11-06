@@ -11,3 +11,8 @@ contextBridge.exposeInMainWorld('bancoAPI', {
     findById: async (id: string) => await ipcRenderer.invoke('findById', id),
     deletarVeiculo: async (id:string) => await ipcRenderer.invoke('deletarVeiculo',id)
 })
+
+contextBridge.exposeInMainWorld("navigateAPI", {
+    irPaginaDetalhes: (id: string) => ipcRenderer.send("change-screen", id),
+    irPaginaHome: () => ipcRenderer.send("change-screen-home"),
+})

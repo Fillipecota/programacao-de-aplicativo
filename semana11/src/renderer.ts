@@ -82,6 +82,11 @@ window.onload = async () => {
 
 }
 
+function irPaginaDetalhes(id: string){
+  (window as any).navigateAPI.irPaginaDetalhes(id);
+
+}
   (window as any).deletarVeiculo = deletarVeiculo;
+  (window as any).irPaginaDetalhes = irPaginaDetalhes;
   
   

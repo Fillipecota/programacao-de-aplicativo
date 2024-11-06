@@ -12,9 +12,10 @@ if (require('electron-squirrel-startup')) {
   app.quit();
 }
 
+var mainWindow : BrowserWindow
 const createWindow = (): void => {
   // Create the browser window.
-  const mainWindow = new BrowserWindow({
+  mainWindow = new BrowserWindow({
     height: 600,
     width: 800,
     webPreferences: {
@@ -71,4 +72,12 @@ ipcMain.handle('findById', async (event: any, id: string) => {
 
 ipcMain.handle('deletarVeiculo',async(_:any,id:string) =>{
   await new VeiculoRepository().delete(id);
+})
+
+ipcMain.on("change-screen", (_: any, id: string) => {
+  mainWindow.loadURL(`http://localhost:3000/detalhes?id=${id}`)
+})
+
+ipcMain.on("change-screen-home", () => {
+  mainWindow.loadURL("http://localhost:3000/main_window")
 })
